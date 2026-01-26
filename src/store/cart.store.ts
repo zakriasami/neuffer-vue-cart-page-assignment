@@ -27,7 +27,6 @@ export const useCartStore = defineStore('cart', () => {
     } finally {
       isLoading.value = false
     }
-    console.log('Initial cart items loaded:', items.value)
   }
 
   async function addNewItem() {

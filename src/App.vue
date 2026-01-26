@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useCartStore } from '@/store/cart.store'
+import CartItem from './components/CartItem/CartItem.vue'
 
 const cartStore = useCartStore()
 console.log('Cart Store initialized:', cartStore)
@@ -46,7 +47,16 @@ onMounted(() => {
               </span>
             </div>
 
-            <ul class="space-y-0" role="list"></ul>
+            <ul class="space-y-0" role="list">
+              <CartItem
+                v-for="item in cartStore.items"
+                :key="item.id"
+                :item="item"
+                :onIncrement="() => cartStore.incrementQuantity(item.id)"
+                :onDecrement="() => cartStore.decrementQuantity(item.id)"
+                :onRemove="() => cartStore.removeItem(item.id)"
+                />
+            </ul>
           </section>
 
           <div class="flex items-center justify-between pt-6">

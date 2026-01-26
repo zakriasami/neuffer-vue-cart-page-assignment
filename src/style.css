@@ -61,6 +61,7 @@ body {
   background-color: var(--color-neutral-button-bg);
   color: var(--color-gray-600);
   transition: background-color 150ms;
+  cursor: pointer;
 }
 
 .quantity-btn:disabled {
