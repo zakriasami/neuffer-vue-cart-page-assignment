@@ -1,1 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 @import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-roboto: "Roboto", sans-serif;
+
+  /* Brand colors (HEX) */
+  --color-primary-green: #2fbf8f;
+  --color-primary-pink: #d84a8a;
+  --color-primary-text: #2e2f4f;
+
+  /* Neutrals (HEX) */
+  --color-gray-800: #2d2f33;
+  --color-gray-600: #6b7280;
+  --color-neutral-button-bg: #f2f3f5;
+}
+
+/* Base */
+body {
+  font-family: var(--font-roboto);
+  background-color: #ffffff;
+  color: var(--color-gray-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Semantic components */
+.btn-add-item {
+  background-color: var(--color-primary-green);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  transition: opacity 200ms;
+}
+
+.btn-add-item:hover {
+  opacity: 0.9;
+}
+
+.btn-clear-cart {
+  background-color: var(--color-primary-pink);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  transition: opacity 200ms;
+}
+
+.btn-clear-cart:hover {
+  opacity: 0.9;
+}
+
+.quantity-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-neutral-button-bg);
+  color: var(--color-gray-600);
+  transition: background-color 150ms;
+}
+
+.quantity-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.table-header {
+  font-family: var(--font-roboto);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: var(--color-primary-text);
+}
