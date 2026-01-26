@@ -1,6 +1,20 @@
 <script setup lang="ts">
-function handleAddItem(): void {}
-function handleClearCart(): void {}
+import { onMounted } from 'vue'
+import { useCartStore } from '@/store/cart.store'
+
+const cartStore = useCartStore()
+console.log('Cart Store initialized:', cartStore)
+function handleAddItem(): void {
+  cartStore.addNewItem()
+}
+
+function handleClearCart(): void {
+  cartStore.clearCart()
+}
+
+onMounted(() => {
+  cartStore.fetchInitialProducts();
+})
 </script>
 
 <template>
