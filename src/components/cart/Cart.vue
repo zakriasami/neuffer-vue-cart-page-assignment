@@ -2,7 +2,7 @@
 import { useCartStore } from '@/store/cart.store'
 import CartItem from '@/components/cart/CartItem/CartItem.vue'
 import SkeletonLoader from '@/components/cart/CartItem/SkeletonLoader.vue';
-import EmptyCart from './CartItem/shared/EmptyCart.vue';
+import EmptyCart from './EmptyCart.vue';
 const cartStore = useCartStore();
 function handleAddItem(): void {
   cartStore.addNewItem()
