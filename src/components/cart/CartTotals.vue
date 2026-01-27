@@ -57,7 +57,7 @@ const handleCheckout = () => {
         </div>
 
         <!-- Checkout Button -->
-        <button @click="handleCheckout" :disabled="isEmpty"
+        <button @click="handleCheckout" :disabled="isEmpty || cartStore.isLoading || cartStore.shippingCost === 0"
           class="w-full h-[40px] rounded-[3px] bg-[#19D16F] text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 transition-opacity duration-200 cursor-pointer">
           Proceed To Checkout
         </button>
