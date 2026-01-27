@@ -1,22 +1,48 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { CartItem } from '@/types/cart'
-import {
-  loadInitialCartItems,
-  addProductToCart,
-} from '@/services/cart.service'
-import { TAX_RATE } from '@/config/tax';
-import type { CartTotals } from '@/types/cartTotal';
+import type { ShippingInfo } from '@/types/shipping'
+import type { CartTotals } from '@/types/cartTotal'
+import { loadInitialCartItems, addProductToCart } from '@/services/cart.service'
+import { TAX_RATE } from '@/config/tax'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
+  const shippingCost = ref(0)
+  const shippingInfo = ref<ShippingInfo>({
+    country: '',
+    state: '',
+    zipCode: ''
+  })
+
   const isEmpty = computed(() => items.value.length === 0)
+
   const itemCount = computed(() =>
-    items.value.reduce((sum, i) => sum + i.quantity, 0)
+    items.value.reduce((sum, item) => sum + item.quantity, 0)
   )
+
+  const subtotal = computed(() =>
+    items.value.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    )
+  )
+
+  const tax = computed(() => subtotal.value * TAX_RATE)
+
+  const total = computed(() =>
+    subtotal.value + tax.value + shippingCost.value
+  )
+
+  const cartTotals = computed<CartTotals>(() => ({
+    subtotal: subtotal.value,
+    tax: tax.value,
+    shipping: shippingCost.value,
+    total: total.value
+  }))
 
   async function fetchInitialProducts() {
     isLoading.value = true
@@ -68,35 +94,33 @@ export const useCartStore = defineStore('cart', () => {
 
   function clearCart() {
     items.value = []
+    shippingCost.value = 0
   }
-  
-  // tax values
-    const shippingCost = ref(20);
-    const subtotal = computed(() => {
-      return items.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    })
-    const tax = computed(() => {
-      return subtotal.value * TAX_RATE
-    })
 
-    const total = computed(() => {
-      return subtotal.value + tax.value + shippingCost.value
-    })
+  function updateShippingInfo(info: Partial<ShippingInfo>) {
+    shippingInfo.value = { ...shippingInfo.value, ...info }
+  }
 
-    const cartTotals = computed<CartTotals>(() => ({
-      subtotal: subtotal.value,
-      tax: tax.value,
-      shipping: shippingCost.value,
-      total: total.value
-    }))
-
+  async function calculateShipping() {
+    await new Promise(resolve => setTimeout(resolve, 600))
+    shippingCost.value = Math.floor(Math.random() * 20) + 5
+    return shippingCost.value
+  }
 
   return {
     items,
     isLoading,
     error,
+    shippingCost,
+    shippingInfo,
+
     isEmpty,
     itemCount,
+    subtotal,
+    tax,
+    total,
+    cartTotals,
+
     fetchInitialProducts,
     addNewItem,
     updateQuantity,
@@ -104,11 +128,7 @@ export const useCartStore = defineStore('cart', () => {
     decrementQuantity,
     removeItem,
     clearCart,
-
-    // computed
-    subtotal,
-    tax,
-    total,
-    cartTotals,
+    updateShippingInfo,
+    calculateShipping
   }
 })

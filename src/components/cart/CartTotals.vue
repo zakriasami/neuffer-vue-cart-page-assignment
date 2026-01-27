@@ -11,7 +11,7 @@ const isEmpty = computed(() => cartStore.isEmpty)
 
 const handleCheckout = () => {
   if (!isEmpty.value) {
-    alert(`Proceeding to checkout.\nTotal: formatCurrency(totals.value.total)`)
+    alert(`Proceeding to checkout.\nTotal: ${formatCurrency(totals.value.total)}`)
   }
 }
 </script>
