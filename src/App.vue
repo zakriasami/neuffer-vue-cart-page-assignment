@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { useCartStore } from '@/store/cart.store'
 import Cart from './components/cart/Cart.vue';
+import CartTotals from './components/cart/CartTotals.vue';
 const cartStore = useCartStore()
 
 onMounted(() => {
@@ -25,17 +26,7 @@ onMounted(() => {
           class="lg:col-span-1 space-y-6"
           aria-labelledby="summary-title"
         >
-          <h2 id="summary-title" class="sr-only">Order Summary</h2>
-
-          <section aria-labelledby="cart-totals-title">
-            <h3
-              id="cart-totals-title"
-              class="table-header text-center mb-4"
-            >
-              Cart Totals
-            </h3>
-            <div class="bg-[#E8E6F1] p-3 mb-6"></div>
-          </section>
+        <CartTotals />
 
           <section aria-labelledby="shipping-title">
             <h3

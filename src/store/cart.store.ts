@@ -5,6 +5,8 @@ import {
   loadInitialCartItems,
   addProductToCart,
 } from '@/services/cart.service'
+import { TAX_RATE } from '@/config/tax';
+import type { CartTotals } from '@/types/cartTotal';
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
@@ -67,6 +69,27 @@ export const useCartStore = defineStore('cart', () => {
   function clearCart() {
     items.value = []
   }
+  
+  // tax values
+    const shippingCost = ref(20);
+    const subtotal = computed(() => {
+      return items.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    })
+    const tax = computed(() => {
+      return subtotal.value * TAX_RATE
+    })
+
+    const total = computed(() => {
+      return subtotal.value + tax.value + shippingCost.value
+    })
+
+    const cartTotals = computed<CartTotals>(() => ({
+      subtotal: subtotal.value,
+      tax: tax.value,
+      shipping: shippingCost.value,
+      total: total.value
+    }))
+
 
   return {
     items,
@@ -81,5 +104,11 @@ export const useCartStore = defineStore('cart', () => {
     decrementQuantity,
     removeItem,
     clearCart,
+
+    // computed
+    subtotal,
+    tax,
+    total,
+    cartTotals,
   }
 })
