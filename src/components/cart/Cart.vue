@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useCartStore } from '@/store/cart.store'
 import CartItem from '@/components/cart/CartItem/CartItem.vue'
-import SkeletonLoader from '../SkeletonLoader.vue';
+import SkeletonLoader from '@/components/cart/CartItem/SkeletonLoader.vue';
+import EmptyCart from './CartItem/shared/EmptyCart.vue';
 const cartStore = useCartStore();
 function handleAddItem(): void {
   cartStore.addNewItem()
@@ -28,15 +29,15 @@ function handleClearCart(): void {
     <div v-if="cartStore.isLoading" class="space-y-0">
       <SkeletonLoader v-for="i in 4" :key="i" />
     </div>
-
     <ul v-else-if="!cartStore.isEmpty && !cartStore.error" class="space-y-0" role="list">
       <CartItem v-for="item in cartStore.items" :key="item.id" :item="item"
         :onIncrement="() => cartStore.incrementQuantity(item.id)"
         :onDecrement="() => cartStore.decrementQuantity(item.id)" :onRemove="() => cartStore.removeItem(item.id)" />
     </ul>
+    <EmptyCart v-else @add-item="handleAddItem" />
   </section>
 
-  <div class="flex items-center justify-between pt-6">
+  <div v-if="!cartStore.error" class="flex items-center justify-between pt-6">
     <button type="button" @click="handleAddItem" class="btn-add-item  cursor-pointer">
       Add Item
     </button>
