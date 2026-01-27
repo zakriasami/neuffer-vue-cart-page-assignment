@@ -11,27 +11,30 @@ export async function loadInitialCartItems(): Promise<CartItem[]> {
 export async function addProductToCart(
   existingItems: CartItem[],
 ): Promise<CartItem[]> {
-  const newProduct = await createProduct({
-    title: 'New Product',
+  const uniqueId = Date.now() + Math.floor(Math.random() * 1000)
+  const newProductPayload:Product = {
+    id: uniqueId,
+    title: `New Product + ${uniqueId}`,
     price: 29.99,
     description: 'A wonderful new product',
     category: 'electronics',
-    image: 'https://via.placeholder.com/300',
-  })
-
-  const existing = existingItems.find(i => i.title === newProduct.title)
-
-  if (existing) {
-    return existingItems.map(item =>
-      item.id === existing.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
+    image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png',
   }
+  const newProduct = await createProduct(newProductPayload)
+  // we will not check for existing products as endpoint always returned the same product and we will not be able to acheive actual functionality
+  // const existing = existingItems.find(i => i.title === newProduct.title)
+
+  // if (existing) {
+  //   return existingItems.map(item =>
+  //     item.id === existing.id
+  //       ? { ...item, quantity: item.quantity + 1 }
+  //       : item
+  //   )
+  // }
 
   return [
     ...existingItems,
-    mapProductToCartItem(newProduct),
+    mapProductToCartItem(newProductPayload),
   ]
 }
 
