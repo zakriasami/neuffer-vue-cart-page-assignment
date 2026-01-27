@@ -18,7 +18,7 @@ const handleCheckout = () => {
 
 <template>
   <section aria-labelledby="cart-totals-title">
-    <div class="bg-neutral-bg rounded-sm p-2 space-y-6">
+    <div class="rounded-sm p-2 space-y-6">
       <h3 class="table-header text-center pb-4">
         Cart Totals
       </h3>

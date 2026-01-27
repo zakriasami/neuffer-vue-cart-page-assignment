@@ -14,15 +14,30 @@
   --color-gray-800: #2d2f33;
   --color-gray-600: #6b7280;
   --color-neutral-button-bg: #f2f3f5;
+
+  --color-input-text: #1D3178;
+  --color-input-placeholder-text: #C5CBE3;
 }
 
 /* Base */
-body {
-  font-family: var(--font-roboto);
-  background-color: #ffffff;
-  color: var(--color-gray-800);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-input-placeholder-text);
+  }
+  input, textarea
+   {
+    color: var(--color-input-text);
+    font-weight: 600;
+  }
+  body {
+    font-family: var(--font-roboto);
+    background-color: #ffffff;
+    color: var(--color-gray-800);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 /* Semantic components */

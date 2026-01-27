@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import { useCartStore } from '@/store/cart.store'
 import Cart from './components/cart/Cart.vue';
 import CartTotals from './components/cart/CartTotals.vue';
-import ShippingCalculator from './components/ShippingCalculator.vue';
+import ShippingCalculator from './components/Shipping/Calculator.vue';
 const cartStore = useCartStore()
 
 onMounted(() => {
