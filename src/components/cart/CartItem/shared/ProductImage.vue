@@ -16,11 +16,11 @@ const emit = defineEmits(['remove'])
 
 const imageError = ref(false)
 
-const handleImageError = () => {
+const handleImageError = ():void => {
   imageError.value = true
 }
 
-const handleRemove = (e: Event) => {
+const handleRemove = (e: Event): void => {
   e.stopPropagation()
   emit('remove')
 }

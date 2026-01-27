@@ -3,13 +3,15 @@ import { computed } from 'vue'
 import { useCartStore } from '@/store/cart.store'
 import { formatCurrency } from '@/utils/formatCurrency'
 import { TAX_RATE } from '@/config/tax'
+import type { CartTotals } from '@/types/cartTotal'
 
 const cartStore = useCartStore()
 
-const totals = computed(() => cartStore.cartTotals)
-const isEmpty = computed(() => cartStore.isEmpty)
+const totals = computed(():CartTotals => cartStore.cartTotals)
+const isEmpty = computed((): boolean => cartStore.isEmpty)
+const isCheckoutDisabled = computed((): boolean => isEmpty.value || cartStore.isLoading || cartStore.shippingCost === 0)
 
-const handleCheckout = () => {
+const handleCheckout = (): void => {
   if (!isEmpty.value) {
     alert(`Proceeding to checkout.\nTotal: ${formatCurrency(totals.value.total)}`)
   }
@@ -57,7 +59,7 @@ const handleCheckout = () => {
         </div>
 
         <!-- Checkout Button -->
-        <button @click="handleCheckout" :disabled="isEmpty || cartStore.isLoading || cartStore.shippingCost === 0"
+        <button @click="handleCheckout" :disabled="isCheckoutDisabled"
           class="w-full h-[40px] rounded-[3px] bg-[#19D16F] text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 transition-opacity duration-200 cursor-pointer">
           Proceed To Checkout
         </button>

@@ -7,7 +7,7 @@ interface FormatCurrencyOptions {
 export function formatCurrency(
   value: number,
   options: FormatCurrencyOptions = {}
-) {
+): string {
   const { currency = 'EUR', locale = 'de-DE' } = options
   return new Intl.NumberFormat(locale, {
     style: 'currency',

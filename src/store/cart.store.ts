@@ -107,6 +107,14 @@ export const useCartStore = defineStore('cart', () => {
     return shippingCost.value
   }
 
+
+function setItemQuantity(id: number, quantity: number) {
+  const item = items.value.find(i => i.id === id)
+  if (item && quantity >= 1 && quantity <= 99) {
+    item.quantity = quantity
+  }
+}
+
   return {
     items,
     isLoading,
@@ -129,6 +137,7 @@ export const useCartStore = defineStore('cart', () => {
     removeItem,
     clearCart,
     updateShippingInfo,
-    calculateShipping
+    calculateShipping,
+    setItemQuantity
   }
 })
