@@ -37,7 +37,7 @@ function handleClearCart(): void {
     <EmptyCart v-else @add-item="handleAddItem" />
   </section>
 
-  <div v-if="!cartStore.error" class="flex items-center justify-between pt-6">
+  <div v-if="!cartStore.error && cartStore.items.length > 0" class="flex items-center justify-between pt-6">
     <button type="button" @click="handleAddItem" class="btn-add-item  cursor-pointer">
       Add Item
     </button>
