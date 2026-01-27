@@ -85,7 +85,7 @@ const submit = async () => {
 
           <!-- Calculate Button -->
           <button type="submit" :disabled="isCalculating"
-            class="w-full py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-pink/50"
+            class="w-full py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
             :class="[
               isCalculating
                 ? 'bg-neutral-400 text-white'
