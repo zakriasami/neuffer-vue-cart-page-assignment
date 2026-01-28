@@ -12,8 +12,7 @@ export async function addProductToCart(
   existingItems: CartItem[],
 ): Promise<CartItem[]> {
   const uniqueId = Date.now() + Math.floor(Math.random() * 1000)
-  const newProductPayload:Product = {
-    id: uniqueId,
+  const newProductPayload: Omit<Product, 'id'> = {
     title: `New Product + ${uniqueId}`,
     price: 29.99,
     description: 'A wonderful new product',
@@ -34,7 +33,7 @@ export async function addProductToCart(
 
   return [
     ...existingItems,
-    mapProductToCartItem(newProductPayload),
+    mapProductToCartItem(newProduct),
   ]
 }
 

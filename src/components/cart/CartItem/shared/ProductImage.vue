@@ -8,8 +8,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  size: 'md',
-  showRemove: false
+  size: 'md'
 })
 
 const emit = defineEmits(['remove'])

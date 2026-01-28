@@ -31,8 +31,9 @@ function handleClearCart(): void {
     </div>
     <ul v-else-if="!cartStore.isEmpty && !cartStore.error" class="space-y-0" role="list">
       <CartItem v-for="item in cartStore.items" :key="item.id" :item="item"
-        :onIncrement="() => cartStore.incrementQuantity(item.id)"
-        :onDecrement="() => cartStore.decrementQuantity(item.id)" :onRemove="() => cartStore.removeItem(item.id)" />
+        @increment="cartStore.incrementQuantity(item.id)"
+        @decrement="cartStore.decrementQuantity(item.id)" 
+        @remove="cartStore.removeItem(item.id)" />
     </ul>
     <EmptyCart v-else @add-item="handleAddItem" />
   </section>

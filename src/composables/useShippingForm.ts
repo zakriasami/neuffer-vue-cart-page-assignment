@@ -1,10 +1,5 @@
 import { ref } from 'vue'
-
-export interface ShippingInfo {
-  country: string
-  state: string
-  zipCode: string
-}
+import type { ShippingInfo } from '@/types/shipping'
 
 export function useShippingForm(initial: ShippingInfo) {
   const shippingInfo = ref<ShippingInfo>({ ...initial })
