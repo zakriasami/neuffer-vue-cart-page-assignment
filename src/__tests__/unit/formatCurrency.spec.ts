@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest'
 import { formatCurrency, formatAmount, getCurrencySymbol } from '@/utils/formatCurrency'
-import { appCurrencyConfig } from '@/config/currency'
 
 describe('formatCurrency - Unit Tests', () => {
   describe('Basic Formatting (EUR/de-DE)', () => {

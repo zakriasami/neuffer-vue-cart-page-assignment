@@ -118,7 +118,7 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.incrementQuantity(1)
-      expect(store.items[0].quantity).toBe(2)
+      expect(store.items[0]!.quantity).toBe(2)
     })
 
     it('should decrement quantity', () => {
@@ -128,7 +128,7 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.decrementQuantity(1)
-      expect(store.items[0].quantity).toBe(2)
+      expect(store.items[0]!.quantity).toBe(2)
     })
 
     it('should remove item when decrementing from quantity 1', () => {
@@ -148,7 +148,7 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.updateQuantity(1, 5)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
     })
 
     it('should not update quantity to zero or negative', () => {
@@ -158,10 +158,10 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.updateQuantity(1, 0)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
 
       store.updateQuantity(1, -1)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
     })
 
     it('should set item quantity within valid range (1-99)', () => {
@@ -171,13 +171,13 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.setItemQuantity(1, 50)
-      expect(store.items[0].quantity).toBe(50)
+      expect(store.items[0]!.quantity).toBe(50)
 
       store.setItemQuantity(1, 99)
-      expect(store.items[0].quantity).toBe(99)
+      expect(store.items[0]!.quantity).toBe(99)
 
       store.setItemQuantity(1, 1)
-      expect(store.items[0].quantity).toBe(1)
+      expect(store.items[0]!.quantity).toBe(1)
     })
 
     it('should not set quantity outside valid range', () => {
@@ -187,13 +187,13 @@ describe('Cart Store - Unit Tests', () => {
       ]
 
       store.setItemQuantity(1, 0)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
 
       store.setItemQuantity(1, 100)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
 
       store.setItemQuantity(1, -5)
-      expect(store.items[0].quantity).toBe(5)
+      expect(store.items[0]!.quantity).toBe(5)
     })
 
     it('should handle non-existent item gracefully', () => {
@@ -218,7 +218,7 @@ describe('Cart Store - Unit Tests', () => {
 
       store.removeItem(1)
       expect(store.items).toHaveLength(1)
-      expect(store.items[0].id).toBe(2)
+      expect(store.items[0]!.id).toBe(2)
     })
 
     it('should clear entire cart', () => {
@@ -397,7 +397,7 @@ describe('Cart Store - Unit Tests', () => {
       store.incrementQuantity(1)
       store.decrementQuantity(1)
 
-      expect(store.items[0].quantity).toBe(2)
+      expect(store.items[0]!.quantity).toBe(2)
       expect(store.subtotal).toBe(20)
     })
 
@@ -411,7 +411,7 @@ describe('Cart Store - Unit Tests', () => {
       store.decrementQuantity(1)
       store.updateQuantity(1, 10)
 
-      expect(store.items[0].quantity).toBe(10)
+      expect(store.items[0]!.quantity).toBe(10)
     })
   })
 

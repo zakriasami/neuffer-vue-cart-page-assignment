@@ -103,10 +103,10 @@ describe("Cart Component - Integration Tests", () => {
 
     const headers = wrapper.findAll('[role="columnheader"]');
     expect(headers).toHaveLength(5);
-    expect(headers[0].text()).toBe("Product");
-    expect(headers[2].text()).toBe("Price");
-    expect(headers[3].text()).toBe("Quantity");
-    expect(headers[4].text()).toBe("Total");
+    expect(headers[0]!.text()).toBe("Product");
+    expect(headers[2]!.text()).toBe("Price");
+    expect(headers[3]!.text()).toBe("Quantity");
+    expect(headers[4]!.text()).toBe("Total");
   });
 
 

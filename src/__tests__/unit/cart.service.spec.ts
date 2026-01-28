@@ -242,7 +242,7 @@ describe('Cart Service - Unit Tests', () => {
 
       const result = await loadInitialCartItems()
 
-      expect(result[0].price).toBe(0)
+      expect(result[0]!.price).toBe(0)
     })
 
     it('should handle products with special characters in title', async () => {
@@ -259,7 +259,7 @@ describe('Cart Service - Unit Tests', () => {
 
       const result = await loadInitialCartItems()
 
-      expect(result[0].title).toBe('Product & "Special" <Characters>')
+      expect(result[0]!.title).toBe('Product & "Special" <Characters>')
     })
 
     it('should handle very long image URLs', async () => {
@@ -277,7 +277,7 @@ describe('Cart Service - Unit Tests', () => {
 
       const result = await loadInitialCartItems()
 
-      expect(result[0].image).toBe(longUrl)
+      expect(result[0]!.image).toBe(longUrl)
     })
   })
 })
