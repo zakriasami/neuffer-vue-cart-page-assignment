@@ -3,6 +3,6 @@ export const appCurrencyConfig = {
   locale: 'de-DE',
 }
 export const FRACTION_DIGITS = {
-  MIN: 0,
+  MIN: 2,
   MAX: 2
 }

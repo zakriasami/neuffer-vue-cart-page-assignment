@@ -9,9 +9,9 @@ export function formatCurrency(
   value: number,
   options: FormatCurrencyOptions = {}
 ): string {
-  const { 
-    currency = appCurrencyConfig.currency, 
-    locale = appCurrencyConfig.locale 
+  const {
+    currency = appCurrencyConfig.currency,
+    locale = appCurrencyConfig.locale
   } = options
 
   return new Intl.NumberFormat(locale, {
@@ -34,7 +34,7 @@ export function getCurrencySymbol(): string {
     style: 'currency',
     currency: appCurrencyConfig.currency,
   })
-  
+
   const parts = formatter.formatToParts(0)
   const currencyPart = parts.find(part => part.type === 'currency')
   return currencyPart?.value || appCurrencyConfig.currency
