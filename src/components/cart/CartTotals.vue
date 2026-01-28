@@ -21,7 +21,7 @@ const handleCheckout = (): void => {
 <template>
   <section aria-labelledby="cart-totals-title">
     <div class="rounded-sm p-2 space-y-6">
-      <h3 class="table-header text-center pb-4">
+      <h3 class="table-header text-center pb-4" id="cart-totals-title">
         Cart Totals
       </h3>
 

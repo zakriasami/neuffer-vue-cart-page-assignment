@@ -28,7 +28,7 @@ const submit = async () => {
 
 <template>
   <section aria-labelledby="shipping-calculator-title">
-    <h3 class="table-header text-center pb-2">
+    <h3 class="table-header text-center pb-2" id="shipping-calculator-title">
           Calculate Shipping
         </h3>
     <div class="bg-[#F4F4FC] rounded-sm p-6 space-y-4">
